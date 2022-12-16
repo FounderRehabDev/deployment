@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ap!3%50ee%7^@4#)^uxj+m=b7rx&d*4!)7rlx=d)guo294%#72'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['deployment-production.up.railway.app']
 
 # Application definition
 
@@ -152,6 +152,10 @@ AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
 AWS_STATIC_LOCATION = 'static/'
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
@@ -160,5 +164,13 @@ AWS_PUBLIC_MEDIA_LOCATION = 'media/'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_PUBLIC_MEDIA_LOCATION}/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
+SECURE_HSTS_SECONDS = 30  # Unit is seconds; *USE A SMALL VALUE FOR TESTING!*
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
