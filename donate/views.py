@@ -29,7 +29,7 @@ def index(request):
         "banners": banners,
         "horses": horses,
         "events": events,
-        "peoples": people,
+        "peoples": peoples,
         "publications": publications,
     })
 
