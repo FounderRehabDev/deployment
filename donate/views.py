@@ -19,12 +19,11 @@ def index(request):
     horses = Horse.objects.all()
     peoples = People.objects.all()
     events = Event.objects.all()
-    publications = Publication.objects.all()
+    publications = Publication.objects.all().order_by('-id')[:4]
 
     events = events.order_by('date')
-    publications = publications.order_by('date')[:3]
     banners = banners.order_by('id')[:1]
-    horses = horses.order_by('name')[:6]
+    horses = horses.order_by('name')[:4]
 
     return render(request, "donate/index.html", {
         "banners": banners,
