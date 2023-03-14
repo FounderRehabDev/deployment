@@ -19,7 +19,7 @@ def index(request):
     horses = Horse.objects.all()
     peoples = People.objects.all()
     events = Event.objects.all()
-    publications = Publication.objects.all().order_by('-id')[:4]
+    publications = Publication.objects.all().order_by('-id')
 
     events = events.order_by('date')
     banners = banners.order_by('id')[:1]
